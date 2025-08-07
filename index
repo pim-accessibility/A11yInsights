@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guía de Componentes Accesibles</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+  <h1>Guía de Componentes Accesibles</h1>
+
+  <nav aria-label="Índice de componentes">
+    <a href="#boton">Botón </a>
+    <a href="#modal">Modal </a>
+    <a href="#pestanias">Pestañas accesibles</a>
+  </nav>
+
+  <section id="boton" tabindex="-1">
+    <h2>Botón accesible</h2>
+    <p>Botón con foco visible y texto claro, usando <code>aria-pressed</code> para estado.</p>
+    <div class="component-example">
+      <button 
+        aria-pressed="false" 
+        id="toggleBtn"
+        onclick="togglePressed(this)">
+        Activar modo oscuro
+      </button>
+    </div>
+  </section>
+
+  <section id="modal" tabindex="-1">
+    <h2>Modal accesible</h2>
+    <p>Modal con <code>aria-modal</code>, foco gestionado y botón para cerrar.</p>
+    <div class="component-example">
+      <button id="openModalBtn" aria-haspopup="dialog" aria-controls="modalDialog" aria-expanded="false">Abrir modal</button>
+
+      <div 
+        id="modalDialog" 
+        role="dialog" 
+        aria-modal="true" 
+        aria-labelledby="modalTitle" 
+        aria-describedby="modalDesc" 
+        tabindex="-1"
+        style="display:none;">
+        <h3 id="modalTitle">Título del modal</h3>
+        <p id="modalDesc">Esta es una caja modal accesible. Presiona ESC para cerrar.</p>
+        <button id="closeModalBtn">Cerrar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="pestanias" tabindex="-1">
+    <h2>Pestañas accesibles</h2>
+    <p>Pestañas con rotación del foco, roles ARIA y navegación por teclado.</p>
+    <div class="component-example" role="tablist" aria-label="Ejemplo de pestañas accesibles">
+      <button role="tab" id="tab1" aria-selected="true" aria-controls="panel1" tabindex="0">Pestaña 1</button>
+      <button role="tab" id="tab2" aria-selected="false" aria-controls="panel2" tabindex="-1">Pestaña 2</button>
+      <button role="tab" id="tab3" aria-selected="false" aria-controls="panel3" tabindex="-1">Pestaña 3</button>
+
+      <div id="panel1" role="tabpanel" aria-labelledby="tab1" tabindex="0">
+        <p>Contenido de la pestaña 1.</p>
+      </div>
+      <div id="panel2" role="tabpanel" aria-labelledby="tab2" tabindex="0" hidden>
+        <p>Contenido de la pestaña 2.</p>
+      </div>
+      <div id="panel3" role="tabpanel" aria-labelledby="tab3" tabindex="0" hidden>
+        <p>Contenido de la pestaña 3.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="area-principal" tabindex="-1">
+  <h2>Área principal e ações disponíveis</h2>
+  <p>Este componente apresenta uma área principal com itens e ações acessíveis com uso de <code>aria-labelledby</code> e estrutura clara para navegação por leitores de ecrã e teclado.</p>
+
+  <h3 id="section-general">Área principal</h3>
+  <div class="grid" role="region" aria-labelledby="section-general">
+    <ul class="card-list">
+      <li>
+        <a href="#view-item" class="card" aria-label="Visualizar item">
+          <img src="icone-item.svg" alt="" aria-hidden="true" />
+          <div>
+            <p class="text-label">Visualizar</p>
+            <p class="text-title">Item</p>
+          </div>
+          <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <h3 id="section-actions">Ações disponíveis</h3>
+  <div class="grid" role="region" aria-labelledby="section-actions">
+    <ul class="card-list">
+      <li>
+        <button class="card" type="button" aria-label="Executar ação um">
+          <img src="icone-acao1.svg" alt="" aria-hidden="true" />
+          <div>
+            <p class="text-label">Executar</p>
+            <p class="text-title">Ação 1</p>
+          </div>
+          <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+          </svg>
+        </button>
+      </li>
+
+      <li>
+        <button class="card" type="button" aria-label="Executar ação dois">
+          <img src="icone-acao2.svg" alt="" aria-hidden="true" />
+          <div>
+            <p class="text-label">Executar</p>
+            <p class="text-title">Ação 2</p>
+          </div>
+          <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+  <section class="accessibility-note" tabindex="-1">
+    <h2>Nota de accesibilidad</h2>
+    <p>
+      Esta guía demuestra componentes accesibles usando prácticas recomendadas como:
+    </p>
+    <ul>
+      <li>Uso correcto de roles ARIA, como <code>role="dialog"</code>, <code>aria-modal</code>, <code>aria-pressed</code>, <code>role="tablist"</code>, <code>role="tabpanel"</code>, etc.</li>
+      <li>Gestión del foco para que los usuarios de teclado y lectores de pantalla naveguen fácilmente.</li>
+      <li>Visibilidad clara del foco (navegación por tabulación).</li>
+      <li>Uso de atributos como <code>aria-selected</code> para estados dinámicos.</li>
+      <li>Control por teclado en componentes interactivos (ejemplo: tecla ESC para cerrar modal, flechas para navegar entre pestañas).</li>
+      <li>Separación clara de los componentes y navegación sencilla mediante índice.</li>
+    </ul>
+    <p>Esta es una guía básica para ayudar a desarrolladores a construir componentes accesibles. Para implementaciones más completas, consulte también las especificaciones WAI-ARIA y pruebas con lectores de pantalla reales.</p>
+  </section>
+
+  <!-- Link al archivo JS -->
+  <script src="js/scripts.js"></script>
+</body>
+</html>
